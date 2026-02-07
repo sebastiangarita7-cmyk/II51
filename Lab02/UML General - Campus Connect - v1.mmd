@@ -1,0 +1,92 @@
+classDiagram
+direction LR
+
+class Catalogo {
+  +int IdCatalogo1
+  +string Nombre
+  +bool Activo
+}
+
+class Curso {
+  +int IdCurso
+  +string Codigo
+  +string Nombre
+  +int Creditos
+  +bool Activo
+}
+
+class Matricula {
+  +int IdMatricula
+  +int IdCatalogo1_FK
+  +int IdCurso_FK
+  +date Fecha
+  +string Estado
+  +decimal Nota
+}
+
+class Profesor {
+  +int IdProfesor
+  +string Nombre
+  +string Correo
+  +string Especialidad
+  +bool Activo
+}
+
+Catalogo "1" --> "0..*" Matricula : realiza
+Curso "1" --> "0..*" Matricula : recibe
+Profesor "1" --> "0..*" Curso : imparte
+
+%% Productos
+class producto{
+  +int Nombre
+  +string Nombre
+  +string Descripción 
+  +float Precio 
+  +bool Activo 
+  +int stock
+} 
+%%Categorias 
+class categorias{
+  +int IdCategorias
+  +string Correo 
+  +string Nombre
+  +string Descripcion 
+  +Bool Activo 
+}
+
+%% Usuarios 
+class Usuario {
+    +int IdUsuario
+    +string Nombre
+    +string Correo
+    +string Contrasena
+    +bool Activo
+}
+%% Pedidos
+class Pedido {
+    +int IdPedido
+    +date Fecha
+    +float Total
+    +string Estado
+}
+%% Detalle de pedido 
+class DetallePedido {
+    +int IdDetallePedido
+    +int
+    +int
+    +int
+    +int Cantidad
+    +float PrecioUnitario
+}
+
+%% Relaciones 
+Producto "0..*" --> "1" Categoria : pertenece_a
+Pedido "1" --> "0..*" DetallePedido : contiene
+Producto "1" --> "0..*" DetallePedido : incluido_en
+Usuario "1" --> "0..*" Pedido : realiza
+
+%% Carrito de compras 
+Class carrito {
+  +int Idcarrito 
+  +int IdUsuario 
+}

@@ -1,0 +1,32 @@
+classDiagram
+    class Colaborador {  
+        int idColaborador 
+        nombre
+        fecha_ingreso
+    }
+    %%Primera entidad (Colaborador)
+    class Turno {
+        int idTurno
+        tipoTurno
+        hora_entrada
+        hora_salida
+    }
+    %%Segunda entidad (Turno)
+    class Marca {
+        int idMarca
+        fecha
+        hora_entrada
+        hora_salida
+    }
+    %%Entidad que relaciona (Marca)
+    class Receso {
+        fecha
+        int idReceso
+        hora_entrada_receso
+        hora_salida_receso
+    }
+    %%Entidad que relaciona a tipo de marca(receso)
+    Colaborador "1" --> "1..*" Marca : registra
+    Turno "1" --> "1..*" Marca : asigna
+    Marca "1" --> "0..*" Receso : tiene
+
