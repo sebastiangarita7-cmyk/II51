@@ -1,0 +1,62 @@
+
+    body{
+      background-color: rgba(74, 75, 5, 0.623);
+    }
+    .form-group label {
+      display: block;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 0;
+      border: 1px solid #00000000;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      padding: 10px 50px;
+      border-radius: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #19127e;
+      /* Un azul más oscuro al pasar el mouse */
+    }
+
+    .tittle {
+        text-align: center;
+        color: #7c1313;
+        font-family: Arial, sans-serif;
+        margin: 0;
+    }
+    #main-title {
+        color:#100eac;
+        font-size: 2,5px;
+        margin-top: 1em;
+        margin-bottom: 0.2em;
+    }
+    /* Estilos para el menú de navegación */
+    nav ul {  
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        
+    }
+    nav ul li {
+        background-color: #000000;
+        margin: 0 15px;
+        padding: 10px 0;
+        border-radius: 5%;
+    }
+  nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    nav ul li a:hover {
+        color: #0e00cc;
+    }
