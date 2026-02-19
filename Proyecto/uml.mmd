@@ -1,0 +1,41 @@
+classDiagram
+    class Colaborador {  
+        int idColaborador 
+        string nombre
+        date fecha_ingreso
+        int idArea
+    }
+
+    class Area {
+        int idArea
+        string nombreArea
+        string descripcion
+    }
+
+    class Turno {
+        int idTurno
+        string tipoTurno
+        time hora_entrada
+        time hora_salida
+    }
+
+    class Marca {
+        int idMarca
+        date fecha
+        time hora_entrada
+        time hora_salida
+    }
+
+    class Receso {
+        int idReceso
+        date fecha
+        time hora_entrada_receso
+        time hora_salida_receso
+    }
+
+    %% Relaciones
+    Area "1" --> "1..*" Colaborador : pertenece
+    Colaborador "1" --> "1..*" Marca : registra
+    Turno "1" --> "1..*" Marca : asigna
+    Marca "1" --> "0..*" Receso : tiene
+

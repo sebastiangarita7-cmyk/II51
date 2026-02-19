@@ -1,6 +1,6 @@
 
     body{
-      background-color: rgba(74, 75, 5, 0.623);
+      background-color: rgba(11, 121, 148, 0.959);
     }
     .form-group label {
       display: block;
@@ -22,7 +22,7 @@
     }
 
     .submit-button:hover {
-      background-color: #19127e;
+      background-color: #534cb1;
       /* Un azul más oscuro al pasar el mouse */
     }
 
@@ -47,7 +47,7 @@
         
     }
     nav ul li {
-        background-color: #000000;
+        background-color: #030192;
         margin: 0 15px;
         padding: 10px 0;
         border-radius: 5%;
@@ -58,5 +58,29 @@
         font-weight: bold;
     }
     nav ul li a:hover {
-        color: #0e00cc;
+        color: #0101039c;
+    }
+    video-section {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    video-section video {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        border-radius: 10px;
+        border: 5px solid #05002249;
+    }
+    section iframe {
+        display: block;
+        margin: 20px auto;
+        border: 5px double #05002249;
+        border-radius: 10px;
+    }
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #030192;
+        color: rgb(63, 55, 55);
     }

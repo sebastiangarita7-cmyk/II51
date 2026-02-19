@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sistema de Control de Personal</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#90c4d0;
+        margin:40px;
+    }
+
+    h1{
+        text-align:center;
+    }
+
+    .seccion{
+        background:rgb(194, 171, 171);
+        padding:20px;
+        margin-bottom:25px;
+        border-radius:10px;
+        box-shadow:0 0 10px rgba(146, 38, 38, 0.1);
+    }
+
+    input, select{
+        width:100%;
+        padding:8px;
+        margin:5px 0 15px 0;
+    }
+
+    button{
+        background:#007bff;
+        color:white;
+        padding:10px;
+        border:none;
+        border-radius:5px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#16eb0b;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Sistema de Control de Marcas</h1>
+
+<!-- AREA -->
+<div class="seccion">
+    <h2>Registro de Área</h2>
+
+    <label>ID Área</label>
+    <input type="number">
+
+    <label>Nombre Área</label>
+    <input type="text">
+
+    <label>Descripción</label>
+    <input type="text">
+
+    <button>Guardar Área</button>
+</div>
+
+<!-- COLABORADOR -->
+<div class="seccion">
+    <h2>Registro de Colaborador</h2>
+
+    <label>ID Colaborador</label>
+    <input type="number">
+
+    <label>Nombre</label>
+    <input type="text">
+
+    <label>Fecha Ingreso</label>
+    <input type="date">
+
+    <label>Área</label>
+    <select>
+        <option>Seleccione Área</option>
+    </select>
+
+    <button>Guardar Colaborador</button>
+</div>
+
+<!-- TURNO -->
+<div class="seccion">
+    <h2>Registro de Turno</h2>
+
+    <label> Turno</label>
+    <input type="number">
+
+    <label>Hora Entrada</label>
+    <input type="time">
+
+    <label>Hora Salida</label>
+    <input type="time">
+
+    <button>Guardar Turno</button>
+</div>
+
+<!-- MARCA -->
+<div class="seccion">
+    <h2>Registro de Marca</h2>
+
+    <label>ID Marca</label>
+    <input type="number">
+
+    <label>Fecha</label>
+    <input type="date">
+
+    <label>Hora Entrada</label>
+    <input type="time">
+
+    <label>Hora Salida</label>
+    <input type="time">
+
+    <label>Colaborador</label>
+    <select>
+        <option>Seleccione Colaborador</option>
+    </select>
+
+    <label>Turno</label>
+    <select>
+        <option>Seleccione Turno</option>
+    </select>
+
+    <button>Guardar Marca</button>
+</div>
+
+<!-- RECESO -->
+<div class="seccion">
+    <h2>Registro de Receso</h2>
+
+    <label>ID Colaborador</label>
+    <input type="number">
+
+    <label>Fecha</label>
+    <input type="date">
+
+    <label>Hora Entrada Receso</label>
+    <input type="time">
+
+    <label>Hora Salida Receso</label>
+    <input type="time">
+
+    <label>Marca</label>
+    <select>
+        <option>Seleccione Marca</option>
+    </select>
+
+    <button>Guardar Receso</button>
+</div>
+
+</body>
+</html>
