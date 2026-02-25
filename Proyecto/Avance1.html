@@ -3,45 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Sistema de Control de Personal</title>
-
-<style>
-    body{
-        font-family: Arial, sans-serif;
-        background:#90c4d0;
-        margin:40px;
-    }
-
-    h1{
-        text-align:center;
-    }
-
-    .seccion{
-        background:rgb(194, 171, 171);
-        padding:20px;
-        margin-bottom:25px;
-        border-radius:10px;
-        box-shadow:0 0 10px rgba(146, 38, 38, 0.1);
-    }
-
-    input, select{
-        width:100%;
-        padding:8px;
-        margin:5px 0 15px 0;
-    }
-
-    button{
-        background:#007bff;
-        color:white;
-        padding:10px;
-        border:none;
-        border-radius:5px;
-        cursor:pointer;
-    }
-
-    button:hover{
-        background:#16eb0b;
-    }
-</style>
+<section>
+    <link rel="stylesheet" href="estilos.css" />
+            <iframe width="550" height="315"
+                src="https://www.profesionalreview.com/wp-content/uploads/2023/09/Intel-4-comienza-su-produccion-de-cara-al-lanzamiento-de-Core-Ultra_4.jpg"
+                title="Imagen de personal" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </section>
 
 </head>
 <body>
@@ -155,4 +126,236 @@
 </div>
 
 </body>
+<script>
+//Funciones para guardar y leer
+function leer(key) {
+    // Si no hay nada guardado, devuelve la lista vacia
+    return JSON.parse(localStorage.getItem(key) || "[]");
+}
+
+function guardar(key, lista) {
+    // Guardamos la lista como texto (JSON)
+    localStorage.setItem(key, JSON.stringify(lista));
+}
+
+
+// Busca la clase
+let secciones = document.querySelectorAll(".seccion");
+
+// 0 Área (no lo usamos), 1 Colaborador, 2 Turno (no lo usamos), 3 Marca, 4 Receso
+let secColab  = secciones[1];
+let secMarca  = secciones[3];
+let secReceso = secciones[4];
+
+
+//Busca los input
+let colabInputs = secColab.querySelectorAll("input");
+let colabId = colabInputs[0];
+let colabNombre = colabInputs[1];
+let colabFecha = colabInputs[2];
+//Boton de guardar colaborador
+let btnColab = secColab.querySelector("button");
+
+// El select de Área existe
+let selectAreaColab = secColab.querySelector("select");
+
+
+// Busca los input
+let marcaInputs = secMarca.querySelectorAll("input");
+let marcaId = marcaInputs[0];
+let marcaFecha = marcaInputs[1];
+let marcaEntrada = marcaInputs[2];
+let marcaSalida = marcaInputs[3];
+//Asignar los select
+let selectsMarca = secMarca.querySelectorAll("select");
+let selectColabMarca = selectsMarca[0]; 
+let selectTurnoMarca = selectsMarca[1]; 
+//Boton de guardar marca
+let btnMarca = secMarca.querySelector("button");
+
+
+// Busca los input
+let recInputs = secReceso.querySelectorAll("input");
+let recIdColab = recInputs[0];
+let recFecha = recInputs[1];
+let recEntrada = recInputs[2];
+let recSalida = recInputs[3];
+
+let selectMarcaReceso = secReceso.querySelector("select");
+let btnReceso = secReceso.querySelector("button");
+
+
+// Llena el select
+function cargarColaboradoresEnSelect() {
+    // Borra el select y empieza de 0
+    selectColabMarca.innerHTML = "<option value=''>Seleccione Colaborador</option>";
+
+    let colabs = leer("colabs"); //Lee lo que esta en localstorage en colabs
+    for (let i = 0; i < colabs.length; i++) { //corre los arreglos uno por uno
+        let op = document.createElement("option"); //crea opcion nueva para el select
+        op.value = colabs[i].id;
+        op.textContent = colabs[i].id + " - " + colabs[i].nombre;
+        selectColabMarca.appendChild(op);
+    }
+}
+
+function prepararTurnoBasico() {
+    // Dejamos un turno fijo ppr ahora
+    selectTurnoMarca.innerHTML = "<option value='N/A'>N/A</option>";
+}
+
+
+function cargarMarcasEnSelect() { //llena el select de marca
+    selectMarcaReceso.innerHTML = "<option value=''>Seleccione Marca</option>"; //llena el select y deja la opcion inicial
+    let marcas = leer("marcas"); //lo lee del localstorage
+    for (let i = 0; i < marcas.length; i++) { //recorre las marcas
+        let op = document.createElement("option"); //crea la etiqueta de option
+        op.value = marcas[i].id;
+        op.textContent = "Marca " + marcas[i].id + " - " + marcas[i].fecha;
+        selectMarcaReceso.appendChild(op); //se repite por cada marca guardada
+    }
+}
+btnColab.addEventListener("click", function () { //guarda el colaborador
+    // lee la lista actual de colaboradores
+    let colabs = leer("colabs");
+
+    // crea un nuevo colaborador
+    let nuevo = {
+        id: colabId.value,
+        nombre: colabNombre.value,
+        fechaIngreso: colabFecha.value
+    };
+
+    // guarda el colaborador
+    colabs.push(nuevo);
+    guardar("colabs", colabs);
+
+    // Limpiamos inputs despues de guardar
+    colabId.value = "";
+    colabNombre.value = "";
+    colabFecha.value = "";
+    selectAreaColab.value = ""; // aunque no se usa, lo dejamos limpio
+
+    // Actualizamos la lista
+    cargarColaboradoresEnSelect();
+
+    alert("Colaborador guardado");
+});
+
+btnMarca.addEventListener("click", function () { //guarda la marca
+    let marcas = leer("marcas"); //lee las marcas
+        //crea un objeto con la informacion nueva agregada
+    let nuevaMarca = {
+        id: marcaId.value,
+        fecha: marcaFecha.value,
+        entrada: marcaEntrada.value,
+        salida: marcaSalida.value,
+        colabId: selectColabMarca.value,
+        turno: selectTurnoMarca.value // N/A por ahora
+    };
+    //mete la marca a la lista
+    marcas.push(nuevaMarca);
+    guardar("marcas", marcas); //guarda la lista acttualizada
+
+    // Limpia los campos despues de guardar
+    marcaId.value = "";
+    marcaFecha.value = "";
+    marcaEntrada.value = "";
+    marcaSalida.value = "";
+    selectColabMarca.value = "";
+    selectTurnoMarca.value = "N/A";
+
+    // Actualizamos marcas para recesos
+    cargarMarcasEnSelect();
+
+    alert("Marca guardada");
+});
+
+btnReceso.addEventListener("click", function () { //guarda el receso
+    let recesos = leer("recesos"); //lee la lista actual de recesos
+
+    let nuevoReceso = { //crea un objeto nuevo segun la informacion escrita 
+        colabId: recIdColab.value,
+        fecha: recFecha.value,
+        entrada: recEntrada.value,
+        salida: recSalida.value,
+        marcaId: selectMarcaReceso.value
+    };
+
+    recesos.push(nuevoReceso); //lo agrega a la lista
+    guardar("recesos", recesos); //lo guarda a la lista
+
+    // limpia espacios despues de guardar
+    recIdColab.value = "";
+    recFecha.value = "";
+    recEntrada.value = "";
+    recSalida.value = "";
+    selectMarcaReceso.value = "";
+
+    alert("Receso guardado");
+});
+
+let seccionReporte = document.createElement("div"); //crea un div
+seccionReporte.className = "seccion";
+seccionReporte.innerHTML = `
+    <h2>Reporte / Historial</h2>
+    <button id="btnReporte">Generar Reporte</button>
+    <div id="salidaReporte" style="margin-top:15px;"></div>
+`;
+document.body.appendChild(seccionReporte); //lo muestra al final de la página
+
+//genera el reporte
+document.getElementById("btnReporte").addEventListener("click", function () {
+  //lee lo guardado
+    let colabs = leer("colabs"); 
+    let marcas = leer("marcas");
+    let recesos = leer("recesos");
+    //crea una variable vacia
+    let html = "";
+
+    // Mostramos colaboradores
+    html += "<h3>Colaboradores</h3>";
+    if (colabs.length === 0) {
+        html += "<p>No hay colaboradores.</p>"; //si el arreglo esta vacio muestra este mensaje
+        //si no esta vacio muestra la informacion
+    } else {
+        for (let i = 0; i < colabs.length; i++) {
+            html += "<p>" + colabs[i].id + " - " + colabs[i].nombre + " (" + colabs[i].fechaIngreso + ")</p>";
+        }
+    }
+
+    // muestra las marcas
+    html += "<h3>Marcas</h3>";
+    if (marcas.length === 0) {
+        html += "<p>No hay marcas.</p>"; //si el arreglo esta vacio muestra este mensaje
+        //si no esta vacio muestra la informacion
+    } else {
+        for (let i = 0; i < marcas.length; i++) {
+            html += "<p>Marca " + marcas[i].id + " | " + marcas[i].fecha +
+                " | Colab: " + marcas[i].colabId +
+                " | " + marcas[i].entrada + " - " + marcas[i].salida + "</p>";
+        }
+    }
+
+    // muestra recesos
+    html += "<h3>Recesos</h3>";
+    if (recesos.length === 0) {
+        html += "<p>No hay recesos.</p>"; //si el arreglo esta vacio muestra este mensaje
+        //si no esta vacio muestra la informacion
+    } else {
+        for (let i = 0; i < recesos.length; i++) {
+            html += "<p>Colab: " + recesos[i].colabId + " | " + recesos[i].fecha +
+                " | " + recesos[i].entrada + " - " + recesos[i].salida +
+                " | Marca: " + recesos[i].marcaId + "</p>";
+        }
+    }
+//aparece reporte en la pantalla
+    document.getElementById("salidaReporte").innerHTML = html;
+});
+//cuando la pagina carga se ejecuta 
+prepararTurnoBasico();
+cargarColaboradoresEnSelect();
+cargarMarcasEnSelect();
+
+</script>
 </html>
