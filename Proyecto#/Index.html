@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Sistema de Control</title>
+<link rel="stylesheet" href="estilos.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+
+<h1>Gestión Personal</h1>
+
+<div class="seccion" id="loginBox">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Correo">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Ingresar</button>
+</div>
+
+
+<div id="app" style="display:none;">
+
+<div class="seccion">
+    <h2>Colaborador</h2>
+    <input type="number" id="colabId" placeholder="ID">
+    <input type="text" id="colabNombre" placeholder="Nombre">
+    <input type="date" id="colabFecha">
+    <button onclick="guardarMarcaAuto()">Marcar Entrada / Salida</button>
+</div>
+
+<div class="seccion">
+    <h2>Marca</h2>
+    <input type="number" id="marcaId" placeholder="ID">
+    <input type="date" id="marcaFecha">
+    <input type="time" id="marcaEntrada">
+    <input type="time" id="marcaSalida">
+
+    <select id="selectColab"></select>
+
+    <button onclick="guardarMarcaAuto()">Marcar Entrada / Salida</button>
+</div>
+
+<div class="seccion">
+    <h2>Reporte</h2>
+    <button onclick="cargarReporte()">Ver Datos</button>
+    <div id="reporte"></div>
+</div>
+
+<button onclick="logout()">Cerrar sesión</button>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
