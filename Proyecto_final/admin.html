@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administrador | Plataforma de Marcas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <h2>Panel administrador</h2>
+  <nav>
+    <a href="dashboard.html">Inicio</a>
+    <a href="marcas.html">Marcas</a>
+    <a href="perfil.html">Mi información</a>
+    <a href="tareas.html">Tareas</a>
+    <a href="vacaciones.html">Vacaciones</a>
+    <a id="adminLink" href="admin.html">Admin</a>
+    <button id="btnSalir" class="btn-salir">Salir</button>
+  </nav>
+</header>
+
+<main class="contenedor">
+
+  <section class="card grande">
+    <h1>Asignar tarea</h1>
+
+    <form id="formTarea">
+      <label>Colaborador</label>
+      <select id="selectColaborador" required>
+        <option value="">Seleccione un colaborador</option>
+      </select>
+
+      <label>Título de la tarea</label>
+      <input type="text" id="tituloTarea" placeholder="Ejemplo: Revisar inventario" required />
+
+      <label>Descripción</label>
+      <textarea id="descripcionTarea" placeholder="Detalle de la tarea" required></textarea>
+
+      <label>Fecha límite</label>
+      <input type="date" id="fechaLimite" required />
+
+      <button type="submit">Asignar tarea</button>
+    </form>
+
+    <p id="mensaje" class="mensaje"></p>
+  </section>
+
+  <section class="card grande">
+    <h2>Colaboradores registrados</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Empleado</th>
+          <th>Área</th>
+          <th>Turno</th>
+          <th>Vacaciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaColaboradores">
+        <tr>
+          <td colspan="4">Cargando colaboradores...</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card grande">
+    <h2>Solicitudes de vacaciones</h2>
+    <div id="solicitudesAdmin"></div>
+  </section>
+
+  <section class="card grande">
+    <h2>Consultar marcas de colaborador</h2>
+
+    <label>Colaborador</label>
+    <select id="selectMarcasColaborador">
+      <option value="">Seleccione un colaborador</option>
+    </select>
+
+    <button onclick="cargarMarcasAdmin()">Ver marcas</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha y hora</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody id="tablaMarcasAdmin">
+        <tr>
+          <td colspan="2">Seleccione un colaborador.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card grande">
+  <h2>Tareas finalizadas <span id="contadorTareasFinalizadas">(0)</span></h2>
+  <p id="notificacionTareas" class="mensaje"></p>
+  <div id="tareasFinalizadasAdmin"></div>
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabaseClient.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio | Plataforma de Marcas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Barra superior de navegación -->
+  <header class="topbar">
+    <h2>Plataforma de Marcas</h2>
+
+    <nav>
+      <a href="dashboard.html">Inicio</a>
+      <a href="marcas.html">Marcas</a>
+      <a href="perfil.html">Mi información</a>
+      <a href="tareas.html">Tareas</a>
+      <a href="vacaciones.html">Vacaciones</a>
+      <a id="adminLink" href="admin.html" class="oculto">Admin</a>
+      <button id="btnSalir" class="btn-salir">Salir</button>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    <section class="hero">
+      <h1>Bienvenido/a</h1>
+      <p id="nombreUsuario">Cargando información...</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Marcar entrada/salida</h3>
+        <p>Registre su jornada laboral, almuerzo y salida.</p>
+        <a class="boton-link" href="marcas.html">Ir a marcas</a>
+      </article>
+
+      <article class="card">
+        <h3>Mi información</h3>
+        <p>Consulte su turno, área, ID de empleado y vacaciones.</p>
+        <a class="boton-link" href="perfil.html">Ver perfil</a>
+      </article>
+
+      <article class="card">
+        <h3>Mis tareas</h3>
+        <p>Revise las tareas asignadas por el administrador o jefe.</p>
+        <a class="boton-link" href="tareas.html">Ver tareas</a>
+      </article>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+    <link rel="stylesheet" href="estilos.css">
+<head>
+<meta charset="UTF-8">
+<title>Asistencia</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <h1> Control de Asistencia</h1>
+        <button onclick="location.href='dashboard.html'">← Volver</button>
+    </header>
+
+    <!-- FORMULARIO -->
+    <div class="card">
+        <h2>Registrar asistencia</h2>
+
+        <div class="form-grid">
+            <input type="date" id="fecha">
+            <input type="time" id="entrada">
+            <input type="time" id="salida">
+
+            <select id="empleado"></select>
+        </div>
+
+        <button class="btn-primary" onclick="registrarAsistencia()">Guardar</button>
+    </div>
+
+    <!-- FILTRO -->
+    <div class="card">
+        <h2>Filtrar por fecha</h2>
+
+        <div class="form-grid">
+            <input type="date" id="fechaInicio">
+            <input type="date" id="fechaFin">
+        </div>
+
+        <button class="btn-secondary" onclick="filtrarAsistencia()">Filtrar</button>
+    </div>
+
+    <!-- TABLA -->
+    <div class="card">
+        <h2>Registros</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Empleado</th>
+                        <th>Fecha</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla"></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>

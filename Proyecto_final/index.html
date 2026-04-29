@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Plataforma de Marcas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-body">
+
+  <!-- Contenedor principal del login -->
+  <main class="login-container">
+    <section class="login-card">
+      <h1>Plataforma de Marcas</h1>
+      <p class="subtitulo">Ingreso de colaboradores y administradores</p>
+
+      <!-- Formulario de inicio de sesión -->
+      <form id="loginForm">
+        <label>Correo electrónico</label>
+        <input type="email" id="email" placeholder="ejemplo@empresa.com" required />
+
+        <label>Contraseña</label>
+        <input type="password" id="password" placeholder="Digite su contraseña" required />
+
+        <button type="submit">Ingresar</button>
+      </form>
+
+      <!-- Enlace para ir a la pantalla de registro -->
+      <p class="texto-link">
+        ¿No tiene cuenta?
+        <a href="registro.html">Registrarse aquí</a>
+      </p>
+
+      <!-- Aquí se muestran mensajes de error o éxito -->
+      <p id="mensaje" class="mensaje"></p>
+    </section>
+  </main>
+
+  <!-- Librería oficial de Supabase para usarla desde el navegador -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Archivo donde se configura la conexión con Supabase -->
+  <script src="supabaseClient.js"></script>
+
+  <!-- Archivo que maneja el login -->
+  <script src="auth.js"></script>
+</body>
+</html>

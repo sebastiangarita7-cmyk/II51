@@ -1,0 +1,36 @@
+<div class="dashboard">
+<link rel="stylesheet" href="estilos.css">
+    <h1>Panel Principal</h1>
+
+    <!-- MENÚ SUPERIOR -->
+    <div class="menu">
+        <button onclick="location.href='empleados.html'"> Empleados</button>
+        <button onclick="location.href='asistencia.html'"> Asistencia</button>
+        <button class="logout" onclick="logout()">Cerrar sesión</button>
+    </div>
+
+    <!-- CARDS -->
+    <div class="cards">
+
+        <div class="card">
+            <h3>Empleados</h3>
+            <p>Gestión completa del personal</p>
+            <button onclick="location.href='empleados.html'">Entrar</button>
+        </div>
+
+        <div class="card">
+            <h3>Asistencia</h3>
+            <p>Control de horarios y registros</p>
+            <button onclick="location.href='asistencia.html'">Entrar</button>
+        </div>
+
+        <div class="card danger">
+            <h3>Salir</h3>
+            <p>Cerrar sesión del sistema</p>
+            <button onclick="logout()">Cerrar sesión</button>
+        </div>
+
+    </div>
+
+</div>
+<script src="app.js" type="module"></script>

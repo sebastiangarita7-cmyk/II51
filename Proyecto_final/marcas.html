@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcas | Plataforma de Marcas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <h2>Plataforma de Marcas</h2>
+    <nav>
+      <a href="dashboard.html">Inicio</a>
+      <a href="marcas.html">Marcas</a>
+      <a href="perfil.html">Mi información</a>
+      <a href="tareas.html">Tareas</a>
+      <a href="vacaciones.html">Vacaciones</a>
+      <a id="adminLink" href="admin.html" class="oculto">Admin</a>
+      <button id="btnSalir" class="btn-salir">Salir</button>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    <section class="card grande">
+      <h1>Registro de marcas</h1>
+      <p>Seleccione el tipo de marca que desea registrar.</p>
+
+      <!-- Botones para guardar marcas -->
+      <div class="acciones-marcas">
+        <button onclick="registrarMarca('entrada')">Entrada</button>
+        <button onclick="registrarMarca('inicio_almuerzo')">Inicio almuerzo</button>
+        <button onclick="registrarMarca('fin_almuerzo')">Fin almuerzo</button>
+        <button onclick="registrarMarca('salida')">Salida</button>
+      </div>
+
+      <p id="mensaje" class="mensaje"></p>
+    </section>
+
+    <section class="card grande">
+      <h2>Mis últimas marcas</h2>
+
+      <!-- Tabla donde se cargan las marcas del colaborador -->
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha y hora</th>
+            <th>Tipo de marca</th>
+          </tr>
+        </thead>
+        <tbody id="tablaMarcas">
+          <tr>
+            <td colspan="2">Cargando marcas...</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
