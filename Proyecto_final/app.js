@@ -1,6 +1,5 @@
 /*
   Maneja:
-  - Sesión con localStorage
   - Marcas
   - Perfil
   - Tareas
