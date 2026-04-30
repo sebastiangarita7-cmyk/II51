@@ -11,11 +11,11 @@ loginForm.addEventListener("submit", async function (evento) {
   evento.preventDefault();
 
   // Se obtienen los valores ingresados por el usuario
-  // trim() elimina espacios en blanco antes o después
+  // elimina espacios en blanco antes o después
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
-  // Mensaje temporal mientras se valida la información
+  // Mensaje mientras se valida la información
   mensaje.textContent = "Ingresando...";
 
   // Se consulta la tabla "usuarios" en Supabase
@@ -34,8 +34,8 @@ loginForm.addEventListener("submit", async function (evento) {
     return;
   }
 
-  // Si el login es correcto:
-  // Se guarda el usuario en el navegador (localStorage)
+  // Si el login es correcto
+  // Se guarda el usuario en el navegador
   // Esto permite mantener la sesión activa
   localStorage.setItem("usuarioActual", JSON.stringify(data));
 

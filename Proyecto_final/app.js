@@ -1,12 +1,18 @@
 /*
-  Maneja:
-  - Marcas
-  - Perfil
-  - Tareas
-  - Admin
-  - Vacaciones
+==========================================
+ SISTEMA DE GESTIÓN DE PERSONAL
+------------------------------------------
+Este archivo controla toda la lógica del sistema:
+- Inicio y cierre de sesión
+- Registro de marcas (entradas/salidas)
+- Perfil del colaborador
+- Gestión de tareas
+- Panel administrativo
+- Solicitudes de vacaciones
+==========================================
 */
 
+// Variables que mantienen el estado actual del usuario
 let usuarioActual = null;
 let colaboradorActual = null;
 let tareasPrevias = 0;
@@ -19,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const pagina = window.location.pathname.split("/").pop();
 
+  // Carga la funcionalidad correspondiente según la página
   if (pagina === "dashboard.html") cargarDashboard();
   if (pagina === "marcas.html") cargarMarcas();
   if (pagina === "perfil.html") cargarPerfil();
@@ -27,6 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (pagina === "vacaciones.html") cargarVacaciones();
 });
 
+//Verifica si el usuario tiene una sesión activa. Si no, lo redirige al login
 function verificarSesion() {
   const usuarioGuardado = localStorage.getItem("usuarioActual");
 
@@ -56,7 +64,7 @@ function cargarDashboard() {
     nombreUsuario.textContent = `Hola, ${colaboradorActual.nombre}. Hoy puedes registrar tus marcas, revisar tareas y solicitar vacaciones.`;
   }
 }
-
+// Registra una marca en la base de datos
 async function registrarMarca(tipoMarca) {
   const mensaje = document.getElementById("mensaje");
   mensaje.textContent = "Guardando marca...";
@@ -78,6 +86,7 @@ async function registrarMarca(tipoMarca) {
   cargarMarcas();
 }
 
+// Carga el historial de marcas del usuario
 async function cargarMarcas() {
   const tabla = document.getElementById("tablaMarcas");
   if (!tabla) return;
@@ -113,7 +122,7 @@ async function cargarMarcas() {
     tabla.appendChild(fila);
   });
 }
-
+// Muestra la información personal del colaborador
 function cargarPerfil() {
   const info = document.getElementById("infoColaborador");
   if (!info) return;
@@ -129,7 +138,7 @@ function cargarPerfil() {
     <p><strong>Rol:</strong> ${colaboradorActual.rol}</p>
   `;
 }
-
+// Obtiene y muestra las tareas asignadas al usuario
 async function cargarTareas() {
   const lista = document.getElementById("listaTareas");
   if (!lista) return;
@@ -179,7 +188,7 @@ async function cargarTareas() {
     lista.appendChild(div);
   });
 }
-
+// Marca una tarea como completada
 async function completarTarea(tareaId) {
   const { error } = await db
     .from("tareas")
@@ -201,7 +210,7 @@ async function cargarAdmin() {
     alert("No tiene permisos para ingresar al panel administrador.");
     window.location.href = "dashboard.html";
     return;
-    // Actualiza tareas cada 5 segundos
+    // Actualiza tareas cada 
 setInterval(() => {
   cargarTareasFinalizadasAdmin();
 }, 5000);
@@ -261,7 +270,7 @@ async function cargarColaboradoresAdmin() {
     }
   });
 }
-
+//Administra las tareas asignadas a los colaboradores desde el panel de administración
 async function asignarTarea(evento) {
   evento.preventDefault();
 
@@ -294,7 +303,7 @@ async function asignarTarea(evento) {
   mensaje.textContent = "Tarea asignada correctamente.";
   document.getElementById("formTarea").reset();
 }
-
+// Carga el panel de administración con colaboradores, solicitudes de vacaciones y tareas finalizadas
 async function cargarVacaciones() {
   const diasDisponibles = document.getElementById("diasDisponibles");
   const formVacaciones = document.getElementById("formVacaciones");
@@ -309,7 +318,7 @@ async function cargarVacaciones() {
 
   await cargarMisSolicitudesVacaciones();
 }
-
+// Permite a los colaboradores solicitar vacaciones desde su panel de usuario
 async function solicitarVacaciones(evento) {
   evento.preventDefault();
 
@@ -359,7 +368,7 @@ async function solicitarVacaciones(evento) {
 
   cargarMisSolicitudesVacaciones();
 }
-
+// Carga las solicitudes de vacaciones realizadas por el colaborador para que pueda ver su estado
 async function cargarMisSolicitudesVacaciones() {
   const lista = document.getElementById("listaVacaciones");
   if (!lista) return;
@@ -400,7 +409,7 @@ async function cargarMisSolicitudesVacaciones() {
     lista.appendChild(div);
   });
 }
-
+// Administra las solicitudes de vacaciones desde el panel de administración
 async function cargarSolicitudesAdmin() {
   const contenedor = document.getElementById("solicitudesAdmin");
   if (!contenedor) return;
@@ -520,7 +529,7 @@ async function responderVacaciones(solicitudId, usuarioId, cantidadDias, estado)
   cargarSolicitudesAdmin();
   cargarColaboradoresAdmin();
 }
-
+// Carga las tareas finalizadas para que el administrador pueda revisarlas
 async function cargarMarcasAdmin() {
   const usuarioId = document.getElementById("selectMarcasColaborador").value;
   const tabla = document.getElementById("tablaMarcasAdmin");
@@ -560,7 +569,7 @@ async function cargarMarcasAdmin() {
     tabla.appendChild(fila);
   });
 }
-
+// Carga las tareas finalizadas para que el administrador pueda revisarlas
 async function cargarTareasFinalizadasAdmin() {
   const contenedor = document.getElementById("tareasFinalizadasAdmin");
   if (!contenedor) return;

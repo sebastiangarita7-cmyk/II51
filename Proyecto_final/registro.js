@@ -1,6 +1,5 @@
 /*
-  Este archivo registra usuarios directamente en la tabla usuarios.
-  No usa Supabase Authentication.
+  registro de usuarios directamente en la tabla usuarios
 */
 
 const registroForm = document.getElementById("registroForm");
