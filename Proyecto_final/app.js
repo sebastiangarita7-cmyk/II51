@@ -1,7 +1,7 @@
 /*
-==========================================
+================================
  SISTEMA DE GESTIÓN DE PERSONAL
-------------------------------------------
+================================
 Este archivo controla toda la lógica del sistema:
 - Inicio y cierre de sesión
 - Registro de marcas (entradas/salidas)
